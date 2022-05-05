@@ -1,0 +1,27 @@
+<!-- first copy blog/about.html here -->
+<!-- put our form(from users/views.py) in a div with a class of content section -->
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}"> <!-- instead userimage.jpg write {{user.profile.image.url}} -->
+        <div class="media-body">
+          <h2 class="account-heading">{{user.username}}</h2> <!-- instead Username write {{user.username}} -->
+          <p class="text-secondary">{{user.email}}</p> <!-- instead username@email.com write {{user.email}} -->
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data"> <!-- N4 added encoding type, enctype for our form to pass image data properly in profile. this isnt get request, a post request -->
+          {% csrf_token %}  <!-- this is for added security of our form. -->
+          <fieldset class='form-group'> <!-- bootstrap class. fieldset is for group related elements -->
+                <legend class="border-bottom mb-4">Profile Info</legend> <!-- N4 changed it to Profile Info. bootstrap class -->
+                {{ u_form|crispy }} <!-- N4 copied the line and added u_form and p_form.-->
+                {{ p_form|crispy }} <!-- N4 access form variable in users/views.py. this is first form word. as_p is method that makes form template in paragraph tags. second one was an instance. this one is variable. this will print out our entire form.-->
+          </fieldset>
+          <div class="form-group"> <!-- this is for styling. bootstrap class -->
+              <button class="btn btn-outline-info" type="submit">Update</button> <!-- changed it to Update. bootstrap class. Button will say Sign Up.  -->
+          </div>
+      </form>
+    </div>
+    <!-- <h1>{{ user.username }}</h1>  this user is not something that we need to pass in to the context. this is built into django that represents the current logged in user.  -->
+{% endblock content %}

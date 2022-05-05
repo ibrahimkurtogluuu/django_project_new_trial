@@ -1,0 +1,11 @@
+<!-- first copy blog/about.html here -->
+<!-- put our form(from users/views.py) in a div with a class of content section -->
+{% extends "blog/base.html" %}
+{% block content %}
+    <h2>You are logged out</h2>
+    <div class="border-top pt-3"> <!-- bootstrap class -->
+        <small class ="text-muted" > <!-- bootstrap class silik yazsın diye -->
+            <a class="ml-2"href="{% url 'login'%}">Log In again</a> <!-- changed sentence as Log In again. deleted alreay have an account. ancor tag. link says sign in -->
+        </small>
+    </div>
+{% endblock content %}

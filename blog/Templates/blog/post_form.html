@@ -1,0 +1,18 @@
+<!-- first copy blog/about.html here -->
+<!-- put our form(from users/views.py) in a div with a class of content section -->
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content section"> <!-- this is just for styling -->
+        <form method="POST"> <!-- this isnt get request, a post request -->
+            {% csrf_token %}  <!-- this is for added security of our form. -->
+            <fieldset class='form-group'> <!-- bootstrap class. fieldset is for group related elements -->
+                  <legend class="border-bottom mb-4">Blog Post</legend> <!-- N5 CHAHGED THE LEGEND AS BLOG POST. bootstrap class -->
+                  {{ form|crispy }} <!-- access form variable in users/views.py. this is first form word. as_p is method that makes form template in paragraph tags. second one was an instance. this one is variable. this will print out our entire form.-->
+            </fieldset>
+            <div class="form-group"> <!-- this is for styling. bootstrap class -->
+                <button class="btn btn-outline-info" type="submit">Post</button> <!-- N5 CHAHGED THE LEGEND AS POST.bootstrap class. Button will say Sign Up.  -->
+            </div>
+        </form>
+    </div>
+{% endblock content %}

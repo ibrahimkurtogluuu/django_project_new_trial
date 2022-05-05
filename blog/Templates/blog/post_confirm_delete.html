@@ -1,0 +1,18 @@
+<!-- first copy blog/about.html here -->
+<!-- put our form(from users/views.py) in a div with a class of content section -->
+{% extends "blog/base.html" %}
+{% block content %}
+    <div class="content section"> <!-- this is just for styling -->
+        <form method="POST"> <!-- this isnt get request, a post request -->
+            {% csrf_token %}  <!-- this is for added security of our form. -->
+            <fieldset class='form-group'> <!-- bootstrap class. fieldset is for group related elements -->
+                  <legend class="border-bottom mb-4">Delete Post</legend> <!-- N5 CHAHGED THE LEGEND AS BLOG POST. bootstrap class -->
+                  <h2>Are you sure you want to delete the {{object.title}}</h2>
+            </fieldset>
+            <div class="form-group"> <!-- this is for styling. bootstrap class -->
+                <button class="btn btn-outline-danger" type="submit">Yes, Delete</button> <!-- N5 CHAHGED THE LEGEND AS POST.bootstrap class. Button will say Sign Up.  -->
+                <a class="btn btn-outline-secondary"  href="{% url 'post-detail' object.id %}"   type="submit">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

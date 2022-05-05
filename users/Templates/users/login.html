@@ -1,0 +1,25 @@
+<!-- first copy blog/about.html here -->
+<!-- put our form(from users/views.py) in a div with a class of content section -->
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content section"> <!-- this is just for styling -->
+        <form method="POST">
+            {% csrf_token %}  <!-- this is for added security of our form. -->
+            <fieldset class='form-group'> <!-- bootstrap class. fieldset is for group related elements -->
+                  <legend class="border-bottom mb-4">Log In </legend> <!-- change the legend to login--><!-- bootstrap class -->
+                  {{ form|crispy }} <!-- access form variable in users/views.py. this is first form word. as_p is method that makes form template in paragraph tags. second one was an instance. this one is variable. this will print out our entire form.-->
+            </fieldset>
+            <div class="form-group"> <!-- this is for styling. bootstrap class -->
+                <button class="btn btn-outline-info" type="submit">Login</button> <!-- change the submit button to login. bootstrap class. Button will say Sign Up.  -->
+                <small class="text-muted ml-2">
+                    <<a href="{% url 'password_reset' %}">Forgot Password?</a>
+            </div>
+        </form>
+        <div class="border-top pt-3"> <!-- bootstrap class -->
+            <small class ="text-muted" > <!-- bootstrap class silik yazsın diye -->
+                Need an account? <a class="ml-2"href="{% url 'register' %}">Sign Up Now</a> <!-- change sentences.change href. as Need an account. name of the template in django_project/urls.py url pattern.(register) ancor tag. link says sign in -->
+            </small>
+        </div>
+    </div>
+{% endblock content %}
